@@ -30,6 +30,10 @@
 			font-size: 1.3em;
 		}
 
+		.reveal li {
+			margin: 0.5em 0;
+		}
+
 		.right {
 			float: right;
 			width: 30%;
@@ -100,6 +104,7 @@
 			<h2> Toro_Unit</h2>
 			<p>Hiroshi Urabe</p>
 			<ul>
+				<li>HAMWORKS Co., Ltd.</li>
 				<li>フロントエンドエンジニア</li>
 				<li>WordBench長野モデレーター</li>
 			</ul>
@@ -108,24 +113,28 @@
 			<h1 style="text-shadow: 0 0 5px #000;">札幌でリモートワークはじめました</h1>
 		</section>
 		<section>
-
-			<h1>Q. CSSって簡単?</h1>
-
+			<img src="img/pizza.jpg" alt="" class="right">
+			<h2>WordBench長野やってます。</h2>
+			<p>WordPress とかの話を肴にピザを食う会です。</p>
 		</section>
-
+		<section data-background="img/wbnaganosp.png"></section>
+		<section data-background="img/wbnaganosp.jpg"></section>
 		<section>
-			<pre>
-				<code>&lt;h1 class=&quot;title&quot;&gt;&#12469;&#12452;&#12488;&#12398;&#12479;&#12452;&#12488;&#12523;&lt;/h1&gt;
-&lt;main id=&quot;main-contents&quot;&gt;
-	&lt;h1 class=&quot;title&quot;&gt;&#12502;&#12525;&#12464;&#12398;&#12479;&#12452;&#12488;&#12523;&lt;/h1&gt;
-	&lt;article class=&quot;post&quot;&gt;
-		&lt;header class=&quot;headline&quot;&gt;
-			&lt;h1 class=&quot;title&quot;&gt;&#35352;&#20107;&#12398;&#12479;&#12452;&#12488;&#12523;&lt;/h1&gt;
-		&lt;/header&gt;
-	&lt;/article&gt;
-&lt;/main&gt;</code>
-
-			</pre>
+			<h1>ほんだい。</h1>
+		</section>
+		<section>
+			<h1>Q. CSSって簡単?</h1>
+		</section>
+		<section>
+			<pre><code><h1 class="title">サイトのタイトル</h1>
+<main id="main-contents">
+	<h1 class="title">ブログのタイトル</h1>
+	<article class="post">
+		<header class="headline">
+			<h1 class="title">記事のタイトル</h1>
+		</header>
+	</article>
+</main></code></pre>
 
 		</section>
 
@@ -437,9 +446,97 @@
 			<h1>他のコンポーネントへは触らない</h1>
 		</section>
 		<section>
+			<h3>こういうCSSを書くと</h3>
 			<pre><code>.card {}
 .card .button {}
 </code></pre>
+
+		</section>
+		<section>
+			<pre><code class="hljs html"><div class="card">
+	<div class="card__body">
+		<a href="#" class="button button--primary"></a>
+	</div>
+</div></code></pre>
+			<pre><code>.card {}
+.card .button {}
+</code></pre>
+			<pre><code>.button {}
+.button.button--primary {}
+</code></pre>
+		</section>
+		<section>
+			<h3>CSSの読み込み順、書き順で結果が変わる！</h3>
+		</section>
+		<section>
+			<ul>
+				<li class="fragment">セレクタを強くしたり、<code>!important</code>で解決したりしてより泥沼化。</li>
+				<li class="fragment">どのCSSが何処でどう影響しているかがよりわからないので消せない。</li>
+			</ul>
+		</section>
+		<section>
+			<h2>ここら辺を頑張ればそこそこ良いCSSライフを送れる。</h2>
+		</section>
+		<section>
+			<h1>が</h1>
+		</section>
+		<section>
+			<h1>それでもすぐCSSは壊れる</h1>
+		</section>
+		<section>
+			<ul>
+				<li class="fragment">簡単に上書き可能</li>
+				<li class="fragment">設計を守らせるための機能は無い</li>
+			</ul>
+		</section>
+		<section>
+			<h2>ドキュメントと強い意志が大切</h2>
+		</section>
+		<section>
+			<ul>
+				<li class="fragment">CSSは超ゆるふわ言語。簡単に壊れる。</li>
+				<li class="fragment">一度設計が破綻すると、そのCSSが設計が信用できなくなる。</li>
+				<li class="fragment">そして上書き刷るしか出来ずに泥沼化。</li>
+			</ul>
+		</section>
+		<section>
+			<ul>
+				<li class="fragment">デザインがブラウザで再現できた！で終わりにしない。絶対リファクタリングする！</li>
+				<li class="fragment">Bootstrapみたいにコピペ出来るようなスタイルガイド。言語では無く、機能ごとに分離。</li>
+				<li class="fragment">コンポーネント単位でファイルを切り分けて、他のコンポーネントへは絶対に触らない。</li>
+				<li class="fragment">その設計指針をしっかりチーム内で統一</li>
+				<li class="fragment">割れた窓の法則、ボーイスカウトの規則</li>
+				<li class="fragment">直交性、開放/閉鎖原則、単一責任の原則など、プログラミングのノウハウをCSSにも適用。</li>
+				<li class="fragment">毎回やるのは大変なので、SMACSS、BEM等、そこそこ普及していて、シンプルなルールを採用するのが吉。</li>
+			</ul>
+		</section>
+		<section>
+			<div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+				<div>
+					<h2>More...?</h2>
+					<p>Web制作者のためのCSS設計の教科書</p>
+				</div>
+				<div style="width: 50%; height: auto">
+					<img src="img/CSS-text.jpg" alt="" >
+				</div>
+
+			</div>
+
+		</section>
+		<section data-markdown="">
+			## 参考資料など
+
+			* [CSS設計の理想と現実](http://www.slideshare.net/hiloki/css-54171523)
+			* [なんでCSSすぐ死んでしまうん](http://www.slideshare.net/hayatomizuno/css-41084761)
+		</section>
+		<section>
+			<h1>Thanks!</h1>
+			<ul>
+				<li>Github / @torounit</li>
+				<li>Twitter: @Toro_Unit</li>
+				<li>Facebook: fb.me/torounit</li>
+				<li>Blog: https://torounit.com</li>
+			</ul>
 		</section>
 	</div>
 </div>
