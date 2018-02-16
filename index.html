@@ -1,0 +1,471 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>NSEG97</title>
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<style>
+
+		.reveal {
+			font-family: 'Avenir', -apple-system, BlinkMacSystemFont, 'YuGothic', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Helvetica Neue', 'Helvetica', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans', 'Noto Sans CJK JP', 'Yu Gothic', meiryo, sans-serif;
+			font-size: 1.4em;
+		}
+
+		.reveal h1,
+		.reveal h2,
+		.reveal h3,
+		.reveal h4 {
+			text-transform: inherit;
+		}
+
+		.reveal pre {
+			font-size: 1.3em;
+		}
+
+		.right {
+			float: right;
+			width: 30%;
+		}
+
+		.title {
+
+		}
+	</style>
+
+	<style>
+		.title:first-child { color: red; }
+		#main-contents .title { color: orange; }
+		.post .title { color: yellow; }
+		h1.title { color: green; }
+		main#main-contents article .title { color: blue; }
+		main#main-contents .headline h1 { color: violet; }
+		main article header h1.title { color: pink; }
+		main#main-contents .post:first-child h1 { color: white; }
+	</style>
+
+	<style>
+		.reveal .card {
+			border: 1px solid rgba(255, 255, 255,.5);
+			display: block;
+		}
+
+		.card .card__image {
+			width: 100%;
+			margin: 0;
+			border: none;
+			max-width: none;
+			display: block;
+		}
+
+		.card .card__title {
+			font-size: 1.5em;
+			margin: 0.5em 0;
+		}
+
+		.card .card__body {
+			padding: 12px;
+		}
+	</style>
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[ 0 ].appendChild( link );
+	</script>
+</head>
+<body>
+<div class="reveal">
+	<div class="slides">
+		<section data-markdown>
+			# CSS設計の話
+
+			NSEG#97@2018.02.17
+		</section>
+		<section data-markdown>
+			# `$whoami`
+		</section>
+		<section>
+			<img src="img/torounit.jpg" alt="" class="right">
+			<h2> Toro_Unit</h2>
+			<p>Hiroshi Urabe</p>
+			<ul>
+				<li>フロントエンドエンジニア</li>
+				<li>WordBench長野モデレーター</li>
+			</ul>
+		</section>
+		<section data-background="img/sapporo.png">
+			<h1 style="text-shadow: 0 0 5px #000;">札幌でリモートワークはじめました</h1>
+		</section>
+		<section>
+
+			<h1>Q. CSSって簡単?</h1>
+
+		</section>
+
+		<section>
+			<pre>
+				<code>&lt;h1 class=&quot;title&quot;&gt;&#12469;&#12452;&#12488;&#12398;&#12479;&#12452;&#12488;&#12523;&lt;/h1&gt;
+&lt;main id=&quot;main-contents&quot;&gt;
+	&lt;h1 class=&quot;title&quot;&gt;&#12502;&#12525;&#12464;&#12398;&#12479;&#12452;&#12488;&#12523;&lt;/h1&gt;
+	&lt;article class=&quot;post&quot;&gt;
+		&lt;header class=&quot;headline&quot;&gt;
+			&lt;h1 class=&quot;title&quot;&gt;&#35352;&#20107;&#12398;&#12479;&#12452;&#12488;&#12523;&lt;/h1&gt;
+		&lt;/header&gt;
+	&lt;/article&gt;
+&lt;/main&gt;</code>
+
+			</pre>
+
+		</section>
+
+		<section data-markdown>
+			# CSSって簡単!
+
+			```
+			.title {
+			color: red;
+			}
+			```
+
+		</section>
+		<section data-markdown="">
+			# CSSって簡単!
+
+			```CSS
+			.title {
+			color: red;
+			}
+			.post .title {
+			color: orange;
+			}
+			```
+		</section>
+		<section data-markdown="">
+			# CSSって簡単?????
+
+			```CSS
+			.title {
+			color: red;
+			}
+			#main-contents .title {
+			color: green;
+			}
+			.post .title {
+			color: orange; /*上書きされる。。。*/
+			}
+			```
+		</section>
+		<section data-markdown>
+			<h1>何色になるでしょう</h1>
+			```CSS
+			.title:first-child { color: red; }
+			#main-contents .title { color: orange; }
+			.post .title { color: yellow; }
+			h1.title { color: green; }
+			main#main-contents article .title { color: blue; }
+			main#main-contents .headline h1 { color: violet; }
+			main article header h1.title { color: pink; }
+			main#main-contents .post:first-child h1 { color: white; }
+			```
+		</section>
+
+		<section>
+			<h1 class="title">サイトのタイトル</h1>
+			<main id="main-contents">
+			<h1 class="title">ブログのタイトル</h1>
+			<article class="post">
+			<header class="headline">
+			<h1 class="title">記事のタイトル</h1>
+			</header>
+			</article>
+			</main>
+		</section>
+
+		<section>
+			<h2>CSSは簡単に書けるけど、すぐに複雑化</h2>
+		</section>
+
+		<section>
+			<h1>プログラミングと一緒。</h1>
+			<p>書き捨てる数行のスクリプトと、何百、何千行のコードは別物。。。</p>
+		</section>
+
+		<section>
+			<h1>CSSもちゃんと設計する必要!!!</h1>
+		</section>
+		
+		<section>
+			<h1>最近よく見る設計。</h1>
+		</section>
+
+		<section>
+			<ol>
+				<li class="fragment">Normalize</li>
+				<li class="fragment">Base</li>
+				<li class="fragment">Components</li>
+			</ol>
+		</section>
+
+		<section>
+			<h1>Normalize</h1>
+			<p>ブラウザのごとのデフォルトCSS違いを均一化。</p>
+			<ul>
+				<li>Normalize.css</li>
+				<li>Sanitize.css</li>
+			</ul>
+		</section>
+
+
+		<section data-markdown>
+			# Base
+
+			HTML要素のサイト・アプリにおけるデフォルトスタイルの定義。
+
+			```
+
+			h1 {
+				margin: 1em 0;
+			}
+
+			a {
+				color: #005cc5;
+			}
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+
+
+			```
+		</section>
+
+		<section data-markdown>
+			# Components
+
+			モジュールとか、ブロックとか様々な呼び方をされる。
+
+			最近、CSS設計のメインの話題。
+
+		</section>
+
+		<section>
+			<div style="width: 40%; margin: auto">
+				<div class="card">
+					<img src="img/logo.png" class="card__image" alt="">
+					<div class="card__body">
+						<h1 class="card__title">NSEGとは</h1>
+						<p>長野県とコンピューターをテーマにした勉強会です。</p>
+						<p>2010年2月に始まりました。</p>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<section>
+			<pre style="font-size: 1em;"><code class="hljs html"><div class="card">
+	<img src="img/logo.png" class="card__image" alt="">
+	<div class="card__body">
+		<h1 class="card__title">NSEGとは</h1>
+		<p>長野県とコンピューターをテーマにした勉強会です。</p>
+		<p>2010年2月に始まりました。</p>
+	</div>
+</div></code></pre>
+			<pre style="font-size: 1em;"><code>.card {
+	display: block;
+	border: 1px solid rgba(255, 255, 255,.5);
+}
+.card .card__image {
+	width: 100%;
+	margin: 0;
+	border: none;
+	display: block;
+}
+
+.card .card__title {
+	font-size: 1.5em;
+	margin: 0.5em 0;
+}
+
+.card .card__body {
+	padding: 12px;
+}</code></pre>
+		</section>
+
+		<section>
+			<ul>
+				<li class="fragment">HTMLへのコンテキストへの依存を避ける</li>
+				<li class="fragment">class名でコンポーネントを表現</li>
+				<li class="fragment">他のコンポーネントへは触らない</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>HTMLへのコンテキストへの依存を避ける</h2>
+
+		</section>
+
+		<section>
+			<pre><code>.card h1 {
+}</code></pre>
+		</section>
+
+		<section>
+			<p>h1がh2等に変わっても同じスタイルがあたって欲しいことのほうが多いので、</p>
+		</section>
+
+		<section>
+			<pre><code>.card .card__title {
+}</code></pre>
+
+		</section>
+
+		<section>
+
+			<h2>class名でコンポーネントを表現</h2>
+
+		</section>
+
+		<section>
+
+			<p>これでもいいいんじゃ・・・</p>
+
+			<pre><code>.card .title {
+}</code></pre>
+		</section>
+
+		<section>
+
+			<p>Section Title のスタイルは?????</p>
+
+			<pre><code class="hljs html"><div class="post">
+	<h1 class="title">Post Title</h1>
+	<div class="card">
+		<h2 class="title">Section Title</h2>
+	</div>
+</div></code></pre>
+			<pre><code>.card {}
+.card .title {}
+</code></pre>
+			<pre><code>.post {}
+.post .title {}
+</code></pre>
+
+		</section>
+
+		<section>
+			<pre><code class="hljs html"><div class="post">
+	<h1 class="post__title">Post Title</h1>
+	<div class="card">
+		<h2 class="card__title">Section Title</h2>
+	</div>
+</div></code></pre>
+			<pre><code>.card {}
+.card__title {}
+</code></pre>
+			<pre><code>.post {}
+.post__title {}
+</code></pre>
+		</section>
+		<section>
+			<h1>クラス命名のアイデア</h1>
+		</section>
+		<section>
+			<h1>BEM</h1>
+			<pre><code class="hljs html"><div class="block">
+	<div class="block__element"></div>
+	<div class="block__element block__element--‎modifier">
+	</div>
+</div></code></pre>
+			<pre><code>.block {}
+.block__element {}
+.block__element--‎modifier {}
+</code></pre>
+		</section>
+
+		<section>
+			<div style="width: 40%; float: left;">
+				<div class="card">
+					<img src="img/logo.png" class="card__image" alt="">
+					<div class="card__body">
+						<h1 class="card__title">NSEGとは</h1>
+						<p>長野県とコンピューターをテーマにした勉強会です。</p>
+						<p>2010年2月に始まりました。</p>
+					</div>
+				</div>
+			</div>
+			<div style="width: 60%; float: right;">
+			<pre style="font-size: 1em;"><code class="hljs html"><div class="card">
+	<img src="img/logo.png" class="card__image" alt="">
+	<div class="card__body">
+		<h1 class="card__title">NSEGとは</h1>
+		<p>長野県とコンピューターをテーマにした勉強会です。</p>
+		<p>2010年2月に始まりました。</p>
+	</div>
+</div></code></pre>
+			</div>
+		</section>
+		<section>
+			<h1>Bootstrap</h1>
+			<p>最近4.0がでました</p>
+		</section>
+		<section>
+			<div>
+			<pre style="font-size: 1.3em;"><code class="hljs html"><div class="card">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div></code></pre>
+			</div>
+		</section>
+		<section>
+			<h1>他のコンポーネントへは触らない</h1>
+		</section>
+		<section>
+			<pre><code>.card {}
+.card .button {}
+</code></pre>
+		</section>
+	</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+	// More info about config & dependencies:
+	// - https://github.com/hakimel/reveal.js#configuration
+	// - https://github.com/hakimel/reveal.js#dependencies
+	Reveal.initialize( {
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+		dependencies: [
+			{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+			{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+			{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+			{ src: 'plugin/search/search.js', async: true },
+			{ src: 'plugin/zoom-js/zoom.js', async: true },
+			{ src: 'plugin/notes/notes.js', async: true }
+		]
+	} );
+</script>
+</body>
+</html>
